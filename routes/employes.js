@@ -1,18 +1,21 @@
 module.exports = app => {
     const employe = require("../controllers/employeController.js");
+    const auth = require('../middleware/auth');
+
+
     var router = require("express").Router();
     // Create a new Tutorial
-    router.post("/", employe.create);
+    router.post("/", auth, employe.create);
     // Retrieve all Tutorials
-    router.get("/", employe.findAll);
+    router.get("/", auth, employe.findAll);
     // Retrieve a single Tutorial with id
-    router.get("/:id", employe.findOne);
+    router.get("/:id", auth, employe.findOne);
     // Update a Tutorial with id
-    router.put("/:id", employe.update);
+    router.put("/:id", auth, employe.update);
     // Delete a Tutorial with id
-    router.delete("/:id", employe.delete);
+    router.delete("/:id", auth, employe.delete);
     // delete All tutorial
-    router.delete("/", employe.deleteAll);
+    router.delete("/", auth, employe.deleteAll);
 
 app.use('/api/employe', router);
 };

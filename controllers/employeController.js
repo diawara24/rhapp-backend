@@ -1,6 +1,8 @@
-const db = require('../models');
-const Employe = db.employes;
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 
+
+const Employe = require('../models/employe.model.js')(mongoose);
 
 //create and save a new Employe
 exports.create = (req, res) => {
